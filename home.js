@@ -9,25 +9,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   formElm.addEventListener("submit", (event) => {
     event.preventDefault();
-    const inputData = inputElm.value; // Retrieve input field value
-    page = 1;
-    searchImages(inputData); // Pass inputData to searchImages
+    const inputData = inputElm.value.trim(); // Retrieve input field value
+    if (inputData) {
+      page = 1;
+      searchImages(inputData); // Fetch based on user input
+    }
   });
 
   async function searchVideos(inputData) {
-    const perPage = 50; // Set the number of videos per page
+    const perPage = 50;
     const url = `https://api.pexels.com/videos/search?query=${inputData}&per_page=${perPage}&page=${page}`;
 
     const response = await fetch(url, {
-      headers: {
-        Authorization: accessKey,
-      },
+      headers: { Authorization: accessKey },
     });
+
     const data = await response.json();
-
     const results = data.videos;
-
-    // Clear previous search results
     searchResults.innerHTML = "";
 
     results.forEach((result) => {
@@ -36,17 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const video = document.createElement("video");
       video.src = result.video_files[0].link;
-      video.setAttribute("loop", true);
-      video.setAttribute("muted", true);
+      video.loop = true;
+      video.muted = true;
 
-      // Add event listeners to play/pause video
-      video.addEventListener("mouseenter", () => {
-        video.play();
-      });
-
-      video.addEventListener("mouseleave", () => {
-        video.pause();
-      });
+      video.addEventListener("mouseenter", () => video.play());
+      video.addEventListener("mouseleave", () => video.pause());
 
       videoWrapper.appendChild(video);
       searchResults.appendChild(videoWrapper);
@@ -56,20 +48,15 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   async function searchImages(inputData) {
-    const perPage = 50; // Set the number of images per page
+    const perPage = 50;
     const url = `https://api.pexels.com/v1/search?query=${inputData}&per_page=${perPage}&page=${page}`;
 
     const response = await fetch(url, {
-      headers: {
-        Authorization: accessKey,
-      },
+      headers: { Authorization: accessKey },
     });
 
     const data = await response.json();
-
     const results = data.photos;
-
-    // Clear previous search results
     searchResults.innerHTML = "";
 
     results.forEach((result) => {
@@ -88,13 +75,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const images = document.querySelector(".images");
   images.addEventListener("click", () => {
-    const inputData = inputElm.value; // Retrieve input field value
-    searchImages(inputData); // Pass inputData to searchImages
+    const inputData = inputElm.value.trim();
+    if (inputData) searchImages(inputData);
   });
 
   const videos = document.querySelector(".videos");
   videos.addEventListener("click", () => {
-    const inputData = inputElm.value; // Retrieve input field value
-    searchVideos(inputData); // Pass inputData to searchVideos
+    const inputData = inputElm.value.trim();
+    if (inputData) searchVideos(inputData);
   });
+
+  // ✅ Fetch default results when the page first loads
+  const defaultSearch = "nature"; // You can change this keyword
+  searchImages(defaultSearch);
 });

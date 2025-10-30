@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kibu</title>
+
+    <!-- google icon css link -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+
+    <!-- main css file -->
+    <link rel="stylesheet" href="../style.css" />
+
+    <link rel="stylesheet" href="contectUs.css">
+  </head>
+  <body>
+    <nav>
+      <div class="nav-bar sticky">
+        <div class="logo">
+          <!-- Example logo -->
+          <a class="material-symbols-outlined pointer" href="../index.html"> flutter </a>
+          <a class="pointer kibu-text" href="../index.html">Kibu</a>
+        </div>
+
+        <div class="shortcut">
+          <ul class="nav-ul">
+            <li class="pointer text-underline"><a href="../index.html">Home</a></li>
+            <li class="pointer active text-underline">
+              <a href="./contectUs.html">Contact Us</a>
+            </li>
+            <li class="pointer text-underline"><a href="../upload/upload.html">Upload</a></li>
+            <li class="pointer text-underline"><a href="#">Downloads</a></li>
+          </ul>
+        </div>
+
+        <div class="user">
+          <a class="login-div pointer" href="../Login/Login.html">Login</a>
+          <div class="profile-div pointer">
+            <span class="material-symbols-outlined"> person </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="main-div">
+      <div class="sidebar">
+        <ul class="sidebar-ul">
+          <li class="flex aline-center sidebar-li pointer">
+            <span class="material-symbols-outlined"> upload </span
+            ><span>Upload</span>
+          </li>
+          <li class="flex aline-center sidebar-li pointer">
+            <span class="material-symbols-outlined"> download </span>Downloads
+          </li>
+          <li class="flex aline-center sidebar-li pointer">
+            <span class="material-symbols-outlined"> favorite </span
+            ><span>Liked</span>
+          </li>
+        </ul>
+
+        <div class="upload-button">
+          <button class="button-style pointer">Upload</button>
+        </div>
+      </div>
+
+
+      <div class="content-area">
+        <h1>Contect Us</h1>
+        <form action="">
+          <label for="name" >Name</label>
+          <input id="name"   type="text" placeholder="Enter your name">
+          <label for="email">Email</label>
+          <input id="email" type="text" placeholder="Enter your email">
+          <label for="subject">Subject</label>
+          <input id="subject" type="text" placeholder="Enter the subject">
+          <label for="message">Message</label>
+          <textarea id="message" cols="30" rows="10" placeholder="Enter your message"></textarea>
+          <div class="submit-button">
+            <button class="submit-style pointer">Submit</button>
+          </div>
+        </div>
+          
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
